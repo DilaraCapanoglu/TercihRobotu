@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+         <h:form  id="bolum-form">
+                        <div class="form-group">
+                            <h:inputHidden value="#{bolumController.bolum.bolumId}"/>
+
+                            <label for="selectFakulte">Fakulte</label>                              
+                            <h:selectOneMenu  styleClass="custom-select" id="selectFakulte" value="#{bolumController.selectedFakulte}" >
+                                <f:selectItems value="#{bolumController.fakulteList}" var="fakulte" itemValue="#{fakulte.fakulteId}" itemLabel="#{fakulte.adi}"/>
+                                <f:ajax execute="bolum-form" render="bolum-form bolum-table "  />
+                            </h:selectOneMenu>  
+
+                            <label for="inputName">Ad:</label>                              
+                            <h:inputText styleClass="form-control"  value="#{bolumController.bolum.adi}"/>                        
+                            <label for="inputName"> Taban Puanı:</label> 
+                            <h:inputText styleClass="form-control"  value="#{bolumController.bolum.tabanPuani}"/>                        
+                            <label for="inputName">Tavan Puanı</label>
+                            <h:inputText styleClass="form-control" value="#{bolumController.bolum.tavanPuani}"/>   
+                            <label for="inputName">Kontenjan</label>
+                            <h:inputText styleClass="form-control"  value="#{bolumController.bolum.kontenjan}"/>                        
+                            <label for="inputName"> Basarı Sırası:</label> 
+                            <h:inputText styleClass="form-control"  value="#{bolumController.bolum.basariSirasi}"/>                        
+
+                        </div>
+
+                      <div class="form-group">
+            <div class="btn-group">
+                <h:commandButton rendered="#{bolumController.bolum.bolumId==null}" action="#{bolumController.create}" value="Create" styleClass="btn btn-primary" />
+                <h:commandButton rendered="#{bolumController.bolum.bolumId!=null}" action="#{bolumController.update}" value="Update" styleClass="btn btn-secondary" />
+                <h:commandButton rendered="#{bolumController.bolum.bolumId!=null}" action="#{bolumController.delete}" value="Delete"  styleClass="btn btn-danger" />
+                <h:commandButton rendered="#{bolumController.bolum.bolumId!=null}" action="#{bolumController.clearForm()}" value="Cancel"  styleClass="btn btn-dark" />
+            </div>
+        </div>
+                    </h:form>
+
+</ui:composition>
+

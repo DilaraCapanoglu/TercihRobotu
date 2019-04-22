@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form id="ilce-table">
+        <h:dataTable   styleClass="table table-striped table-hover" value="#{ilceController.ilceList}" var="ilce">
+
+            <h:column>
+                <f:facet name="header"> İlce Adı</f:facet>
+                <h:commandLink action="#{ilceController.updateForm(ilce)}" value="#{ilce.adi}">
+                    <f:ajax execute="@this" render="ilce-form"  />
+                </h:commandLink>   
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sehir Adı</f:facet>
+                    #{ilce.sehir.adi}
+
+            </h:column>
+
+        </h:dataTable>
+    </h:form>
+</ui:composition >

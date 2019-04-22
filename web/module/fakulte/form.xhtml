@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form  id="fakulte-form">
+        <div class="form-group" > 
+            <label for="selectSehir"> Fakülte</label>                              
+            <h:selectOneMenu  styleClass="custom-select" id="selectSehir" value="#{fakulteController.selectedUniversite}" >
+                <f:selectItems value="#{fakulteController.universiteList}" var="universite" itemValue="#{universite.universiteId}" itemLabel="#{universite.adi}"/>
+                <f:ajax execute="fakulte-form" render="fakulte-form fakulte-table "  />
+            </h:selectOneMenu>  
+            <h:inputHidden value="#{fakulteController.fakulte.fakulteId}"/>
+            <label for="inputAdi"> Fakülte Adı:</label>                              
+            <h:inputText  id="inputAdi" styleClass="form-control"  value="#{fakulteController.fakulte.adi}"/>                        
+
+
+        </div>
+
+        <div class="form-group">
+            <div class="btn-group">
+                <h:commandButton rendered="#{fakulteController.fakulte.fakulteId==null}" action="#{fakulteController.create}" value="Create" styleClass="btn btn-primary" />
+                <h:commandButton rendered="#{fakulteController.fakulte.fakulteId!=null}" action="#{fakulteController.update}" value="Update" styleClass="btn btn-secondary" />
+                <h:commandButton rendered="#{fakulteController.fakulte.fakulteId!=null}" action="#{fakulteController.delete}" value="Delete"  styleClass="btn btn-danger" />
+                <h:commandButton rendered="#{fakulteController.fakulte.fakulteId!=null}" action="#{fakulteController.clearForm()}" value="Cancel"  styleClass="btn btn-dark" />
+            </div>
+        </div>
+    </h:form>
+</ui:composition>
+
